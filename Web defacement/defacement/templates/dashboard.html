@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="300"> <!-- Auto-refresh every 300 seconds (5 minutes) -->
+    <title>Website Monitor - Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(#30c5d2, #30c5d2);
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    padding-top: 20px;
+}
+
+.logo {
+    color: #023047;
+    font-weight: 800;
+    font-size: 24px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    font-weight: 600;
+}
+
+.nav a:hover {
+    background-color: #555;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+
+.nav a.active {
+    background-color: #8d9094; /* Highlight active link */
+}
+
+.text {
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+    word-spacing: 12px;
+    margin-top: 30px;
+    color: #fff;
+}
+
+.section-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.monitor-form {
+    height: 300px;
+    width: 40%;
+    margin: 15px;
+}
+
+.input {
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+}
+
+input[type="url"] {
+    font-size: 18px;
+    font-weight: 400;
+    width: 80%;
+    height: 50px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+button {
+    padding: 25px 10px;
+    border: none;
+    width: 15%;
+    background-color: #333;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.dashboard {
+    margin: 20px;
+    color: #333;
+}
+
+h1,
+h2 {
+    color: #333;
+}
+
+.website-list {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .website-item {
+            background: linear-gradient(to bottom, #eef0f6, #ffffff);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-sizing: border-box;
+            transition: transform 0.3s ease-in-out;
+            width: calc(50% - 10px);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+.website-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+.website-item:hover {
+    transform: scale(1.02);
+}
+
+.website-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.website-status {
+            font-size: 16px;
+            color: #333;
+            margin-left: 10px;
+        }
+
+        .status-up {
+            color: green;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .status-down {
+            color: red;
+        }
+
+.website-status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        @media only screen and (min-width: 768px) {
+            .website-item {
+                width: calc(33.3333% - 13.3333px);
+            }
+        }
+
+.website-action {
+    padding: 8px 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.website-details {
+    margin-top: 15px;
+}
+
+.details-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.details-content {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #555;
+}
+
+.content-changes {
+            margin-top: 20px;
+            border-top: 2px solid #007bff;
+            padding-top: 20px;
+        }
+
+.change-items {
+    display: flex; /* Display the change items horizontally */
+    flex-wrap: wrap; /* Wrap items to the next line if they exceed the container width */
+}
+
+.change-item {
+    margin-right: 10px; /* Add margin between change items */
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.toggle-changes {
+            background-color: #007bff;
+            color: #fff;
+            padding: 4px 40px;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-top: 8px;
+            font-size: 15px;
+        }
+
+.toggle-changes:hover {
+    background-color: #0056b3;
+}
+
+.defaced {
+    background-color: #ff8d91;
+}
+
+.normal {
+    background-color: #b4f7b4;
+}
+
+@media only screen and (min-width: 768px) {
+    .website-item {
+        width: calc(33.3333% - 13.3333px);
+    }
+}
+
+.add-website-form {
+    margin-bottom: 20px;
+}
+
+.add-website-input {
+    padding: 12px;
+    width: calc(100% - 24px);
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.add-website-button {
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.website-list {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <b>Detectify</b>
+        </div>
+        <div class="nav">
+            <a href="#"> Home </a>
+            <a href="{{ url_for('uptime') }}">Uptime</a>
+            <a href="{{ url_for('doc') }}">Documentation</a>
+            <a href="{{ url_for('about') }}">about us</a>
+
+        </div>
+    </header>
+    <main>
+        <div class="text">
+            <h1>We monitor website changes <br>
+                ...so you don’t have to!</h1>
+        </div>
+    </main>
+    <section class="section-container">
+        <form class="monitor-form" method="POST" action="/add_website" enctype="multipart/form-data">
+            <div class="input">
+                <label for="new_url">Add your website</label><br>
+                <input class="add-website-input" type="url" name="new_url"
+                    placeholder="Enter a website: www.example.com" required>
+                <button class="add-website-button" type="submit">Go</button>
+            </div>
+        </form>
+        <form class="monitor-form" method="POST" action="/add_website" enctype="multipart/form-data">
+            <div class="input">
+                <label for="file">Upload a text file with websites (one per line)</label><br>
+                <input type="file" name="file" accept=".txt" required>
+                <button class="add-website-button" type="submit">Go</button>
+            </div>
+        </form>
+    </section>
+    <div class="dashboard">
+        <h2>Monitored Websites</h2>
+            <div class="website-list">
+                {% for website_name, website_info in monitored_websites.items() %}
+                    <div class="website-item">
+                        <div class="website-header">
+                            <span class="website-name">{{ website_name }}</span>
+                            <span class="website-status {% if website_info['status'] == 'Down' %}status-down{% else %}status-up{% endif %}">
+                                <span class="website-status-indicator {% if website_info['status'] == 'Down' %}defaced{% else %}normal{% endif %}"></span>
+                                {{ website_info['status'] }}
+                            </span>
+                        </div>
+                        <span>Last Checked: {{ website_info.get('last_checked', 'N/A') }}</span><br>
+                        <span>Website Status: {% if 'changes' in website_info %}{% if website_info['changes'] %}<strong class="defaced">Defaced</strong>{% else %}<strong class="normal">Normal</strong>{% endif %}{% else %}<strong>Not Checked</strong>{% endif %}</span><br>
+                        <!-- Display DNS information -->
+                        <span>DNS IP: {{ website_info.get('current_ip', 'Not Available') }}</span><br>
+                        <br><a class="website-action" href="/monitor/{{ website_name }}" target="_blank">Monitor</a>
+
+                        
+                        <div class="website-details">
+                            <div class="details-title">Details:</div>
+                            <div class="details-content">
+                                <div>URL: {{ website_info['url'] }}</div>
+                                <div>Status: {{ website_info['status'] }}</div>
+                                <div>Response Time: {{ website_info.get('response_time', 'N/A') }} ms</div>
+                            </div>
+                        </div>
+                        
+                        {% if 'baseline' in website_info %}
+                            <div class="website-details">
+                                <div class="details-title">Baseline:</div>
+                                <div class="details-content">
+                                    <div>Textual Content Length: {{ website_info['baseline']['content_length'] }}</div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        
+                        {% if 'changes' in website_info %}
+                        <div class="content-changes">
+                            <div class="details-title">Content Changes:</div>
+                            <button class="toggle-changes">More</button>
+                            <div class="change-items" style="display: none;">
+                                {% for change in website_info['changes'] %}
+                                    <div class="change-item">{{ change }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButtons = document.querySelectorAll('.toggle-changes');
+            const changeItems = document.querySelectorAll('.change-items');
+
+            toggleButtons.forEach((toggleButton, index) => {
+                toggleButton.addEventListener('click', function() {
+                    changeItems[index].style.display = (changeItems[index].style.display === 'none') ? 'block' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

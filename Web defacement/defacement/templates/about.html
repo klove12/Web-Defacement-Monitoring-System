@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F0F0F0;
+    color: #fff;
+}
+.logo {
+    color: #1d3557;
+    margin-top: 5px;
+    margin-left: 40px;
+}
+main {
+    height: 100;
+}
+.about-us {
+    display: flex;
+    height: 100;
+    width: 100;
+}
+.left-section {
+    color: #1d3557;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.left-section h1,h4,h5,h6 {
+    margin-bottom: 10px;
+}
+.left-section p {
+    text-align: left;
+    margin-left: 40px;
+}
+.right-section {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+img {
+    width: 60%;
+    height: 50%;
+}
+    </style>
+</head>
+<body>
+    <main>
+        <div class="logo">
+            <h2>Detectify</h2>
+        </div>
+        <div class="about-us">
+            <div class="left-section">
+                <div class="text">
+                    <h1>ABOUT US</h1>
+                    <h4>How We Protect Your Information</h4>
+                    <p>At <b>Detectify</b>, we are driven by a passion for digital security and a commitment to safeguarding online spaces. In an era where cybersecurity threats are ever-evolving, our mission is to fortify websites against the menace of defacement.</p>
+                    <br>
+                    <h5> <b>Our Mission</b> </h5>
+                    <h6><b>Defending Digital Identities</b></h6>
+                    <p>We understand the pivotal role that online presence plays in today's interconnected world. Our mission is to empower website owners with cutting-edge tools and technologies to defend their digital identities against unauthorized alterations.</p>
+                    <br><h7><b>Our Defacement Detection Approach</b></h7>
+                    <p><b>Proactive Monitoring:</b>
+                        We believe in proactive defense. Our system employs advanced algorithms to continuously monitor website content, instantly detecting and alerting users to any signs of unauthorized alterations.</p>
+                    <p><b>User-Friendly Solutions:</b>
+                        Security should not come at the cost of complexity. Our user-friendly solutions are designed to be accessible to all, empowering website owners with the tools they need to protect their online assets without unnecessary complications.</p>   
+                        <h8><b>contact us</b></h8>
+                        <p>Your digital security matters, and so does your peace of mind. If you have any questions, feedback, or if you'd like to explore how Detectify can enhance your website security, please <a href="contact us">contact us</a></p>
+                        <br><p>Thank you for choosing <b>Detectify</b> for your defacement detection needs. Together, let's build a more secure digital future.</p>  
+                    </div>
+            </div>
+            <div class="right-section">
+                <img src="{{ url_for('static', filename='images/Server.png') }}">
+            </div>
+        </div>
+    </main>
+</body>
+</html>

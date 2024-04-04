@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation-Page</title>
+    <style>
+		@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;700&family=Playfair+Display&family=Poppins:wght@100;200;400;500;700&display=swap');
+body {
+    font-family: 'Poppins', sans-serif;
+	background: #252422;
+	color: #fff;
+}
+
+div.main-body {
+	display: grid;
+	grid-template-columns: minmax(300px, auto)1fr;
+	grid-template-areas: "navbar mainContent";
+	grid-gap: 20px;
+}
+
+nav#navbar a {
+	display: block;
+	padding: 5px;
+	margin: 10px 0;
+	text-decoration: none;
+	color: #fff;
+	background: #52b788;
+}
+nav#navbar a:hover {
+	color: #52b788;
+	background: #fff;
+}
+header {
+	color: #52b788;
+}
+
+main#main-doc {
+	grid-area: mainContent;
+}
+
+header {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+
+	</style>
+</head>
+<body>
+	<div class="main-body">
+		<nav id="navbar">
+			<header>Documentation Menu</header>
+			<a href="#Intro" class="nav-link">
+				<b>What is WDD</b></a>
+			<a href="#Uptime" class="nav-link">
+				<b>Uptime-checker</b></a>
+
+		</nav>
+
+		<main id="main-doc">
+			<section class="main-section" id="Intro">
+				<header>
+					<b>Web Defacement Detection</b>
+					<br>
+				</header>
+				<p>
+				Web defacement detection is the process of monitoring websites and web applications for unauthorized changes, alterations, or vandalism of their content, appearance, or functionality. This practice is crucial for maintaining the integrity, security, and reputation of a website, particularly for businesses, government organizations, and other entities with an online presence. Web defacement can occur for various reasons, including hacktivism, cybercriminals seeking to make a statement, or individuals looking to deface websites for personal satisfaction.<br>
+				        
+				<b><p>Here are some key aspects of web defacement detection:</b>
+
+					<li><b> Continuous Monitoring:</b> Web defacement detection involves actively and continuously monitoring websites for any unexpected or unauthorized changes. This can include alterations to the site's HTML, images, text content, or even its overall design.<br></li>
+										
+					<li><b> Baseline Comparison:</b> Establishing a baseline or reference point for a website's content and appearance is crucial. This baseline is typically a snapshot of the website in its pristine state. Any deviations from this baseline can trigger an alert.<br></li>
+					
+					<li><b> Content Analysis:</b> Tools used for detection may also employ content analysis techniques to identify changes in text or metadata, such as keywords, titles, or descriptions. This can help in identifying subtle defacements.<br></li>
+					
+					<li><b> Alerting Mechanisms:</b> When a potential defacement is detected, an alert or notification is generated and sent to responsible personnel, such as website administrators or security teams. This allows for prompt action to be taken.<br></li>
+
+					<li><b> Checksums and Hashes:</b> File integrity verification techniques like checksums or cryptographic hashes are often used to detect changes in critical website files. When a file is altered, its checksum or hash value will change, indicating a potential defacement.<br></li>
+			</section>
+
+			<section class="main-section" id="Uptime">
+				<header>
+					Uptime-Checker
+					<br>
+				</header>
+				<p><b>Uptime checker : </b> An uptime checker, also known as a website or service monitoring tool, is a software or service that continuously monitors the availability and performance of websites, web applications, servers, or online services. Its primary function is to detect and report when a website or service experiences downtime or other performance issues
+					<b><p>Here are the key aspects of an uptime checker:</p></b>
+					<li><b>Monitoring Frequency:</b> Uptime checkers regularly send requests (usually HTTP or HTTPS requests) to the target website or service to check if it's accessible. The frequency of these checks can vary, from every few seconds to minutes, depending on the service's configuration.</li>
+
+                    <li><b>Availability Checks:</b> The uptime checker verifies whether the target website or service is responding as expected. If it receives a valid response within a defined time frame, the service is considered "up." If not, it's marked as "down."</li>
+
+                    <li><b>Performance Metrics:</b> Some uptime checkers go beyond availability monitoring and measure performance metrics such as response time, latency, and server load. This data can help pinpoint performance issues.</li>
+
+                    <li><b>Alerting: When an uptime</b> checker detects that a website or service is down or experiencing issues, it can send alerts via various channels, including email, SMS, push notifications, or integration with incident management systems like PagerDuty or Slack.</li>
+				
+				    <li><b>Public Status Pages:</b> Some uptime checkers offer the ability to create public status pages that display the current status of monitored websites or services, which can be helpful for transparency with users or customers.</li>
+				
+				    <li><b>Downtime Logging:</b> Uptime checkers maintain a history of uptime and downtime incidents, enabling users to track and analyze the availability of their websites or services over time.</li>
+				</p>
+
+
+			</section>
+		</main>
+		</div>
+</body>
+</html>

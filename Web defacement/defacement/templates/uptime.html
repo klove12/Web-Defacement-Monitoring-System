@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Up-Time</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;700&family=Playfair+Display&family=Poppins:wght@100;200;400;500;700;800&family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #333;
+            color: #fff;
+        }
+
+        header {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 15px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .right {
+            display: flex;
+            width: 15%;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .btn {
+            padding: 9px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #333;
+            color: #fff;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #555;
+            color: #fff;
+        }
+
+        main {
+            background-color: #333;
+            height: 80vh;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .texts {
+            padding-bottom: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .box {
+            padding-top: 30px;
+            height: 40vh;
+            width: 80%;
+            margin: 0 auto;
+            box-shadow: 13px 13px 25px #262626, -13px -13px 25px #404040;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .label-text {
+            margin-left: 20px;
+            font-weight: 800;
+            font-size: 25px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .input-text {
+            width: 80%;
+            height: 60px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            margin-left: 20px;
+            border: 1px solid #fff;
+            background-color: #333;
+            color: #fff;
+            font-size: 20px;
+            align-items: center;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        ::placeholder {
+            font-size: 18px;
+            padding: 10px;
+            color: #ccc;
+        }
+
+        .inp-btn {
+            height: 55px;
+            width: 10%;
+            border: none;
+            background-color: #fff;
+            color: #333;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .inp-btn:hover {
+            background-color: #dedede;
+            color: #333;
+        }
+
+        .input-file {
+            margin-left: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .custom-file-btn {
+            height: 40px;
+            width: 120px;
+            border: none;
+            background-color: #fff;
+            color: #333;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .custom-file-btn:hover {
+            background-color: #dedede;
+            color: #333;
+        }
+
+        .inputs {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeout-label {
+            margin-left: 20px;
+            font-weight: 800;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .input-number {
+            height: 30px;
+            width: 10%;
+            border: 1px solid #fff;
+            color: #fff;
+            background-color: #333;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-left: 20px;
+        }
+
+        section {
+            padding-top: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .text-1 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+        }
+
+        .tabel {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+        }
+
+        h1,
+        h2 {
+            color: #fff;
+        }
+
+        .btn-logout {
+    padding: 9px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #aba7a7;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    }
+
+.btn-logout:hover {
+    background-color: #dedede;
+    color: #5d5555;
+   }
+
+   @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <h2>Uptime</h2>
+        </div>
+        <div class="middle">
+            <nav>
+                <ul>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="texts">
+            <h1>
+                Check Website Availability
+            </h1>
+            <p>
+                Website uptime or website availability refers to the amount of time for which a website was accessible to
+                users who wish to access a website or web server.
+            </p>
+        </div>
+        <div class="box">
+            <form method="POST" action="/uptime" enctype="multipart/form-data">
+                <label class="label-text">Website Name</label><br>
+                <input class="input-text" type="text" name="single_url" id="single_url" placeholder="http://">
+                <button class="inp-btn" type="submit">Go</button>
+                <div class="inputs">
+                    <div class="input-file">
+                        <label for="file" class="custom-file-btn">Choose File</label>
+                        <input type="file" name="file" id="file" class="file-input" style="display: none;">
+                        <span id="file-name" class="placeholder">No file selected</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    <section>
+        <div class="text-1">
+            <h1>Feature of Service</h1>
+            <p>Monitor the availability of your websites effortlessly with our uptime portal. Input a list of websites via a TXT file and let us handle the rest.
+            Simply upload a TXT file containing the URLs of the websites you want to monitor. We'll regularly check their uptime and downtimes.
+            </p>
+        </div>
+    </section>
+
+    <script>
+        const fileInput = document.getElementById("file");
+        const fileName = document.getElementById("file-name");
+    
+        fileInput.addEventListener("change", () => {
+            const files = fileInput.files;
+            if (files.length > 0) {
+                fileName.textContent = files[0].name;
+                fileName.classList.remove("placeholder");
+            } else {
+                fileName.textContent = "No file selected";
+                fileName.classList.add("placeholder");
+            }
+        });
+    </script>
+</body>
+
+</html>

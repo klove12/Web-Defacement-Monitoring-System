@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Monitor - {{ website_status }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 10px;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        h1, h2, h3 {
+            color: #343a40;
+        }
+
+        /* Container styles */
+        .container {
+            max-width: 1400px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px; /* Increase border radius for a rounded appearance */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* List styles */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Monitor status styles */
+        .monitor-status {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        /* Live status heartbeat animation */
+        .live-status {
+            font-weight: bold;
+            color: #28a745;
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1);
+            }
+            75% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Changes table styles */
+        .monitor-changes table {
+            margin-top: 0;
+        }
+
+        /* Change type styles */
+        .change-type {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            margin-right: 8px;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .added .change-type {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .removed .change-type {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        /* Customized styles for changes */
+        .added-content {
+            background-color: #d4edda; /* Light green for added content */
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+
+        .removed-content {
+            background-color: #f8d7da; /* Light red for removed content */
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+
+        /* Summary container styles */
+        .summary-container {
+            margin-top: 20px;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* Refresh message styles */
+        .refresh {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* No changes and changes detected styles */
+        .no-changes, .changes-detected {
+            font-size: 12px;
+            margin-bottom: 10px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .changes-detected {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="monitor-page">
+            <!-- Website Information -->
+            <h1>Website Information</h1>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Information</th>
+                </tr>
+                <tr>
+                    <td>Textual Content Length</td>
+                    <td>{{ website_info.textual_content|length }}</td>
+                </tr>
+                <tr>
+                    <td>DOM Tree Length</td>
+                    <td>{{ website_info.dom_tree|length }}</td>
+                </tr>
+                <tr>
+                    <td>Content Length</td>
+                    <td>{{ website_info.content_length }}</td>
+                </tr>
+                <!-- Website Status -->
+                <tr>
+               <td>Website Status</td>
+              {% if website_status.lower() == 'website available' %}
+              <td class="monitor-status">Website Status: <span class="live-status" style="color: #28a745;">{{ website_status }}</span></td>
+               {% else %}
+              <td class="monitor-status">Website Status: <span class="live-status" style="color: #28a745;">{{ website_status }}</span></td>
+              {% endif %}
+              </tr>
+
+                <tr>
+                    <td>DNS IP</td>
+                    <td>{{ current_ip }}</td>
+                </tr>
+            </table>
+
+            <!-- Changes section -->
+            {% if changes %}
+                <h2 class="{% if changes %}changes-detected{% else %}no-changes{% endif %}">
+                    {% if changes %}Changes Detected{% else %}No Changes Detected{% endif %}
+                </h2>
+                <div class="monitor-changes">
+                    <h3>Changes:</h3>
+                    {% if changes %}
+                        <table>
+                            <tr>
+                                <th>Type</th>
+                                <th>Change</th>
+                            </tr>
+                            {% for change in changes %}
+                                <tr class="{% if change.startswith('+') %}added{% elif change.startswith('-') %}removed{% endif %}">
+                                    <td class="change-type {% if change.startswith('+') %}added{% elif change.startswith('-') %}removed{% else %}unchanged{% endif %}">
+                                        {% if change.startswith('+') %}<i class="fas fa-plus"></i>{% elif change.startswith('-') %}<i class="fas fa-minus"></i>{% else %}<i class="fas fa-ellipsis-h"></i>{% endif %}
+                                    </td>
+                                    <td>
+                                        {% if change.startswith('+') %}
+                                            <div class="added-content">{{ change[1:] }}</div>
+                                        {% elif change.startswith('-') %}
+                                            <div class="removed-content">{{ change[1:] }}</div>
+                                        {% else %}
+                                            {{ change }}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
+                </div>
+            {% else %}
+                <p class="no-changes">Great news! No changes detected. Everything looks good!</p>
+            {% endif %}
+        </div>
+
+        <!-- Summary container for added changes -->
+        {% if changes %}
+            <div class="summary-container">
+                <div class="added-changes">
+                    <h3>Added Changes:</h3>
+                    {% for change in changes if change.startswith('+') %}
+                        <div class="added-content">{{ change[1:] }}</div>
+                    {% endfor %}
+                </div>
+
+                <!-- Summary container for removed changes -->
+                <div class="removed-changes">
+                    <h3>Removed Changes:</h3>
+                    {% for change in changes if change.startswith('-') %}
+                        <div class="removed-content">{{ change[1:] }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Refresh message -->
+    <div class="refresh">
+        <p>This page will refresh every 60 seconds to show the latest information.</p>
+    </div>
+</body>
+<script>
+    // Auto-refresh every 60 seconds
+    setInterval(function() {
+      location.reload();
+    }, 60000);
+</script>  
+</html>
